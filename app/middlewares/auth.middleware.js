@@ -7,7 +7,7 @@ exports.validateToken = async (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) {
     return res
-      .status(412)
+      .status(400)
       .json({ status: false, message: "Authorization token required" });
   }
   try {
@@ -25,9 +25,10 @@ exports.validateToken = async (req, res, next) => {
       return res.status(401).send({ status: false, message: "Not authorized" });
     }
   } catch (err) {
-    return res.status(404).send({
+    return res.status(500).send({
       status: false,
-      message: err.message,
+      message: "Server error",
+      data: err.stack,
     });
   }
 };

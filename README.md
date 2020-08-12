@@ -14,11 +14,20 @@ Sosmed REST Api
 8. mongoose
 9. nodemailer
 10. nodemon
+11. express-fileupload
 
 ### Features
 
 - [x] Authentication
+
   - [x] Login
   - [x] Register
   - [x] Email Verification
   - [x] Logout
+
+- [x] Post
+  - [x] Create Post
+  - [x] Update Post
+  - [x] Delete Post
+  - [x] Get All Post + Pagination
+  - [x] Get My Post
