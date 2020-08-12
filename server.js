@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const db = require("./app/models/db");
 const baseurl = require("./app/helper/baseurl");
@@ -21,6 +22,11 @@ db.mongoose
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cors());
+
+// Declare Routes
 app.use(authRoutes);
 
 app.listen(process.env.PORT, () => {
