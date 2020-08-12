@@ -15,19 +15,21 @@ Sosmed REST Api
 9. nodemailer
 10. nodemon
 11. express-fileupload
+12. firebase-admin
 
 ### Features
 
 - [x] Authentication
-
   - [x] Login
   - [x] Register
   - [x] Email Verification
   - [x] Logout
-
 - [x] Post
   - [x] Create Post
   - [x] Update Post
   - [x] Delete Post
   - [x] Get All Post + Pagination
   - [x] Get My Post
+- [x] Like
+  - [x] Like + Push Notification
+  - [x] Dislike
