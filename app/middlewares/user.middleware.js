@@ -14,7 +14,7 @@ exports.validateRegister = async (req, res, next) => {
     const { details } = result.error;
     let pesan = [];
     details.map((i) => pesan.push({ [i.context.key]: i.message }));
-    res.status(400).json({
+    return res.status(400).json({
       status: false,
       message: "Invalid request",
       data: pesan,
@@ -24,7 +24,7 @@ exports.validateRegister = async (req, res, next) => {
       const username = await User.findOne({ username: req.body.username });
       const email = await User.findOne({ email: req.body.email });
       if (username || email) {
-        res.status(400).json({
+        return res.status(400).json({
           status: false,
           message: "Duplicate field",
           data: {
@@ -36,7 +36,7 @@ exports.validateRegister = async (req, res, next) => {
         next();
       }
     } catch (err) {
-      res.status(500).json({
+      return res.status(500).json({
         status: false,
         message: "Server Error",
       });
