@@ -30,26 +30,11 @@ exports.register = async (req, res) => {
       });
     }
   } catch (err) {
-    if (err.errors) {
-      let errorMessage = {};
-      if (err.errors.email) {
-        errorMessage.email = "Email sudah ada";
-      }
-      if (err.errors.username) {
-        errorMessage.username = "Username sudah ada";
-      }
-      return res.status(400).send({
-        status: false,
-        message: "Validation error",
-        data: errorMessage,
-      });
-    } else {
-      return res.status(500).send({
-        status: false,
-        message: "Server error",
-        data: err.stack,
-      });
-    }
+    return res.status(500).send({
+      status: false,
+      message: "Server error",
+      data: err.stack,
+    });
   }
 };
 
@@ -93,14 +78,13 @@ exports.login = async (req, res) => {
       return res.status(400).send({
         status: false,
         message: "User belum terdaftar",
-        data: [],
       });
     }
   } catch (err) {
     res.status(500).send({
       status: false,
       message: "Server error",
-      data: err,
+      data: err.stack,
     });
   }
 };
@@ -149,7 +133,7 @@ exports.me = async (req, res) => {
     res.status(500).send({
       status: false,
       message: "Server error",
-      data: err,
+      data: err.stack,
     });
   }
 };
