@@ -4,7 +4,7 @@ Sosmed REST Api
 
 ### Library
 
-1. ExpressJS
+1. express
 2. bcrypt
 3. body-parser
 4. cors
