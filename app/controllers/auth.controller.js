@@ -84,7 +84,7 @@ exports.login = async (req, res) => {
     res.status(500).send({
       status: false,
       message: "Server error",
-      data: err,
+      data: err.stack,
     });
   }
 };
@@ -133,7 +133,7 @@ exports.me = async (req, res) => {
     res.status(500).send({
       status: false,
       message: "Server error",
-      data: err,
+      data: err.stack,
     });
   }
 };
