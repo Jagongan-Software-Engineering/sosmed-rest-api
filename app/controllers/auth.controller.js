@@ -5,6 +5,8 @@ const SessionToken = db.sessionToken;
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { getAvatar } = require("../helper/randomAvatar");
+const FirebaseToken = require("../models/firebaseToken.model");
+const { getUserByToken } = require("../helper/auth");
 
 exports.register = async (req, res) => {
   // Create a Tutorial
@@ -140,10 +142,12 @@ exports.me = async (req, res) => {
 
 exports.logout = async (req, res) => {
   try {
+    const user = await getUserByToken(req);
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null) return res.sendStatus(401);
     const deleted = await SessionToken.deleteOne({ token: token });
+    const firebaseToken = await FirebaseToken.deleteMany({ user_id: user._id });
     if (deleted.ok) {
       return res.send({
         status: "success",
