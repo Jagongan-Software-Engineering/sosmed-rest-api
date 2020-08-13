@@ -1,6 +1,9 @@
 const { getUserByToken } = require("../helper/auth");
 const Post = require("../models/post.model");
 const baseurl = require("../helper/baseurl");
+const Comment = require("../models/comment.model");
+const Like = require("../models/like.model");
+const User = require("../models/user.model");
 
 const post = async (req, res) => {
   try {
@@ -73,7 +76,7 @@ const remove = async (req, res) => {
       user_id: user._id,
       _id: id,
     };
-    const deletePost = await Post.findOneAndRemove(filter);
+    const deletePost = await Post.findOneAndDelete(filter);
     if (deletePost) {
       return res.send({
         status: true,
@@ -99,11 +102,29 @@ const getAll = async (req, res) => {
     let { page } = req.params;
     page = page ? page : 0;
     const index = page * 5;
-    const posts = await Post.find(
-      {},
-      {},
-      { sort: { createdAt: -1 }, skip: index, limit: 5 }
-    ).populate("user_id", "fullname email username", "user");
+    const user = await getUserByToken(req);
+    const posts = await Post.find({}, "-__v", {
+      sort: { createdAt: -1 },
+      skip: index,
+      limit: 5,
+    })
+      .populate("user_id", "fullname email username", "user")
+      .lean();
+
+    await Promise.all(
+      posts.map(async (post) => {
+        let likes = await Like.find({
+          post_id: post._id,
+        });
+        let comments = await Comment.find({ post_id: post._id });
+        post.isLiked = likes.some(
+          (like) => like.user_id.toString() == user._id.toString()
+        );
+        post.totalLike = likes.length;
+        post.totalComment = comments.length;
+        post.imgsrc = `${baseurl.url}/image/${post.imgsrc}`;
+      })
+    );
 
     let nextUrl = null;
     if (posts.length == 5) {
@@ -130,7 +151,22 @@ const getMyPost = async (req, res) => {
     const filter = { user_id: user._id };
     const posts = await Post.find(filter, "-__v -user_id", {
       sort: { createdAt: -1 },
-    });
+    }).lean();
+
+    await Promise.all(
+      posts.map(async (post) => {
+        let likes = await Like.find({
+          post_id: post._id,
+        });
+        let comments = await Comment.find({ post_id: post._id });
+        post.isLiked = likes.some(
+          (like) => like.user_id.toString() == user._id.toString()
+        );
+        post.totalLike = likes.length;
+        post.totalComment = comments.length;
+        post.imgsrc = `${baseurl.url}/image/${post.imgsrc}`;
+      })
+    );
     return res.send({
       status: true,
       message: "Get all my post",

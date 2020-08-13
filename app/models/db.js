@@ -11,5 +11,6 @@ db.sessionToken = require("./sessionToken.model");
 db.post = require("./post.model");
 db.like = require("./like.model");
 db.firebaseToken = require("./firebaseToken.model");
+db.comment = require("./comment.model");
 
 module.exports = db;

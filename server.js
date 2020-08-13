@@ -10,6 +10,7 @@ const authRoutes = require("./app/routes/auth.routes");
 const postRoutes = require("./app/routes/post.routes");
 const likeRoutes = require("./app/routes/like.routes");
 const firebaseTokenRoutes = require("./app/routes/firebaseToken.routes");
+const commentRoutes = require("./app/routes/comment.routes");
 const app = express();
 
 db.mongoose
@@ -37,6 +38,9 @@ app.use(authRoutes);
 app.use(postRoutes);
 app.use(likeRoutes);
 app.use(firebaseTokenRoutes);
+app.use(commentRoutes);
+
+app.use("/image", express.static("uploads"));
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);

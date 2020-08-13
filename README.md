@@ -33,3 +33,7 @@ Sosmed REST Api
 - [x] Like
   - [x] Like + Push Notification
   - [x] Dislike
+- [x] Comment
+  - [x] Comment + Push Notification
+  - [x] Delete Comment
+  - [x] Get Comment by PostId
