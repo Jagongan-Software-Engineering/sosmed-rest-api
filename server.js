@@ -11,8 +11,10 @@ const postRoutes = require("./app/routes/post.routes");
 const likeRoutes = require("./app/routes/like.routes");
 const firebaseTokenRoutes = require("./app/routes/firebaseToken.routes");
 const commentRoutes = require("./app/routes/comment.routes");
+const notificationRoutes = require("./app/routes/notification.routes");
 const app = express();
 
+console.log(`Connecting to ${baseurl.databaseurl}`);
 db.mongoose
   .connect(baseurl.databaseurl, {
     useNewUrlParser: true,
@@ -39,8 +41,16 @@ app.use(postRoutes);
 app.use(likeRoutes);
 app.use(firebaseTokenRoutes);
 app.use(commentRoutes);
+app.use(notificationRoutes);
 
 app.use("/image", express.static("uploads"));
+
+app.use("/", (req, res) => {
+  return res.send({
+    status: true,
+    message: "hey jude",
+  });
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
