@@ -108,7 +108,7 @@ const getAll = async (req, res) => {
       skip: index,
       limit: 5,
     })
-      .populate("user_id", "fullname email username", "user")
+      .populate("user_id", "fullname email username profilePicture", "user")
       .lean();
 
     await Promise.all(

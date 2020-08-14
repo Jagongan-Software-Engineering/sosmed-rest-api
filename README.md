@@ -37,3 +37,4 @@ Sosmed REST Api
   - [x] Comment + Push Notification
   - [x] Delete Comment
   - [x] Get Comment by PostId
+- [x] Get Notification
