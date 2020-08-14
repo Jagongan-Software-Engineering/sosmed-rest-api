@@ -4,18 +4,18 @@ Sosmed REST Api
 
 ### Library
 
-1. express
-2. bcrypt
-3. body-parser
-4. cors
-5. dotenv
-6. joi
-7. jsonwebtoken
-8. mongoose
-9. nodemailer
-10. nodemon
-11. express-fileupload
-12. firebase-admin
+1. express `npm i express`
+2. bcrypt `npm i bcrypt`
+3. body-parser `npm i body-parser`
+4. cors `npm i cors`
+5. dotenv `npm i dotenv`
+6. joi `npm i joi`
+7. jsonwebtoken `npm i jsonwebtoken`
+8. mongoose `npm i mongoose`
+9. nodemailer `npm i nodemailer`
+10. nodemon `npm i nodemon`
+11. express-fileupload `npm i express-fileupload`
+12. firebase-admin `npm i firebase-admin`
 
 ### Features
 
