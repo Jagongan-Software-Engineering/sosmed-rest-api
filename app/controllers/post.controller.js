@@ -1,7 +1,6 @@
 const { getUserByToken } = require("../helper/auth");
 const Post = require("../models/post.model");
 const baseurl = require("../helper/baseurl");
-const { uploadImage } = require("../helper/firebase");
 
 const post = async (req, res) => {
   try {
@@ -13,11 +12,9 @@ const post = async (req, res) => {
     const splitedName = image.name.split(".");
     const extension = splitedName[splitedName.length - 1];
     const fileName = `${user._id}-${Date.now()}.${extension}`;
-    await image.mv(`./uploads/${fileName}`);
-    image.name = fileName;
-    const urlImage = await uploadImage(image);
+    image.mv(`./uploads/${fileName}`);
     const post = await new Post({
-      imgsrc: urlImage,
+      imgsrc: fileName,
       caption: caption,
       user_id: user._id,
     }).save();

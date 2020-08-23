@@ -15,8 +15,7 @@ Sosmed REST Api
 9. nodemailer
 10. nodemon
 11. express-fileupload
-12. @google-cloud/storage
-13. firebase-admin
+12. firebase-admin
 
 ### Features
 
