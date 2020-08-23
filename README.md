@@ -15,6 +15,7 @@ Sosmed REST Api
 9. nodemailer
 10. nodemon
 11. express-fileupload
+12. @google-cloud/storage
 
 ### Features
 
