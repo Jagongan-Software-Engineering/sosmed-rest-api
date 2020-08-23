@@ -15,7 +15,9 @@ Sosmed REST Api
 9. nodemailer `npm i nodemailer`
 10. nodemon `npm i nodemon`
 11. express-fileupload `npm i express-fileupload`
-12. firebase-admin `npm i firebase-admin`
+12. @google-cloud/storage `npm i @google-cloud/storage`
+13. firebase-admin `npm i firebase-admin`
+
 
 ### Features
 
