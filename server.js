@@ -19,6 +19,8 @@ db.mongoose
   .connect(baseurl.databaseurl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex:true,
+    useFindAndModify:false,
   })
   .then(() => {
     console.log(`Connected to ${baseurl.databaseurl}`);
@@ -29,7 +31,6 @@ db.mongoose
   });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
