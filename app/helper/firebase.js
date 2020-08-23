@@ -25,4 +25,21 @@ const uploadImage = async (image) => {
   return url;
 };
 
-module.exports = { uploadImage };
+const sendNotification = (tokens, message) => {
+  const config = {
+    data: { message: message },
+    tokens: tokens,
+  };
+  admin
+    .messaging()
+    .sendMulticast(config)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+module.exports = { sendNotification, uploadImage  };
+

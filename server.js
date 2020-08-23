@@ -8,6 +8,8 @@ const db = require("./app/models/db");
 const baseurl = require("./app/helper/baseurl");
 const authRoutes = require("./app/routes/auth.routes");
 const postRoutes = require("./app/routes/post.routes");
+const likeRoutes = require("./app/routes/like.routes");
+const firebaseTokenRoutes = require("./app/routes/firebaseToken.routes");
 const app = express();
 
 db.mongoose
@@ -33,6 +35,8 @@ app.use(fileUpload({ createParentPath: true }));
 // Declare Routes
 app.use(authRoutes);
 app.use(postRoutes);
+app.use(likeRoutes);
+app.use(firebaseTokenRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
